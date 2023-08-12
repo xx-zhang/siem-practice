@@ -13,6 +13,5 @@
 - https://documentation.wazuh.com/current/getting-started/architecture.html
 - https://documentation.wazuh.com/3.8/getting-started/architecture.html
 
-
-## 安装部署
-- [install elk](https://documentation.wazuh.com/4.4/deployment-options/elastic-stack/all-in-one-deployment/index.html)
+# ChangeLog 
+- 2023-08-11 创建默认项目

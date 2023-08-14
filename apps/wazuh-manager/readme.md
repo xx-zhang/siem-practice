@@ -1,0 +1,2 @@
+# Wazuh Server
+

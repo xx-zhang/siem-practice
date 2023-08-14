@@ -6,8 +6,8 @@
 - [] 默认增加机选扫描 opensca, 集成`vuls` 扫描功能
 
 
-
 # 其他部署
+- 需要相关引擎进行发送日志。
 
 ## 安装部署
 - [install elk](https://documentation.wazuh.com/4.4/deployment-options/elastic-stack/all-in-one-deployment/index.html)

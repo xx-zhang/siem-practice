@@ -102,6 +102,12 @@
   "python.analysis.logLevel": "Warning",
   
   // "python.analysis.fixAll": [],
+ 
+  // golang beego settings 
+  // "go.gopath": "/usr/bin/go",
+  // "go.goroot": "",
+  "go.logging.level": "verbose",
+  "go.trace.server": "verbose",
 
   "latex-workshop.bibtex-format.sort.enabled": false,
   "markdown-image.local.path": "/images",

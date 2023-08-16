@@ -48,3 +48,30 @@ location / {
 }
 
 ```
+
+
+
+## 需要修改地方注意
+- 常用的patch是下面的两个内容，我们经常用下面的一个。
+```bash
+
+patchelf --set-rpath lib64/ ./sbin/nginx 
+patchelf --add-needed ./lib64/libfuzzy.so.2.1.0 ./sbin/nginx 
+```
+
+
+## 配置
+
+```
+
+```
+
+
+
+
+# 常见faq
+
+## 问题1. 编译最新版本的lua-devel出错
+- update ngx lua module to []`v0.10.25`](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.25)
+
+![Alt text](./images/image.png)

@@ -99,7 +99,7 @@ modsecurity-v${modsecurity_version}.tar.gz
 modsecurity-nginx-v${modsecurity_nginx_version}.tar.gz
 ngx_devel_kit-0.3.1.tar.gz
 nginx-upload-module-2.3.0.tar.gz
-lua-nginx-module-0.10.17.tar.gz
+lua-nginx-module-0.10.25.tar.gz
 luajit2-${luajit2_version}.tar.gz
 ngx-fancyindex-0.5.1.tar.gz
 njs-0.7.5.tar.gz
@@ -257,14 +257,15 @@ say_ok "unshowing nginx version"
 export LUAJIT_LIB=${curdir}/compile/luajit/lib
 export LUAJIT_INC=${curdir}/compile/luajit/include/luajit-2.1
 export LIB_MODSECURITY=/usr/local/modsecurity
-export LIB_SODIUM=/data/workdir/nginx-demo/nginx-1.24.0/libsodium 
+export LIB_SODIUM=${curdir}/nginx-${nginxver}/libsodium 
 
 chmod u+x ./configure
+
 ./configure \
-	--prefix=../${NGINX_ALIAS_NAME} \
-	--sbin-path=../${NGINX_ALIAS_NAME}/sbin/nginx \
-	--conf-path=../${NGINX_ALIAS_NAME}/conf/nginx.conf \
-	--modules-path=../${NGINX_ALIAS_NAME}/modules  \
+	--prefix=../nginx \
+	--sbin-path=../nginx/sbin/nginx \
+	--conf-path=../nginx/conf/nginx.conf \
+	--modules-path=../nginx/modules  \
 	--with-openssl=../compile/openssl \
 	--with-openssl-opt='--strict-warnings' \
 	--with-pcre=../compile/pcre \
@@ -298,11 +299,6 @@ chmod u+x ./configure
 	--with-file-aio \
 	--with-http_v2_module \
   --with-http_dav_module \
-  --add-module=../plugins/nginx-goodies-nginx-sticky-module-ng \
-  --add-module=../plugins/nginx-http-flv-module \
-  --add-module=../plugins/njs/nginx \
-  --add-module=../plugins/ngx-fancyindex \
-  --add-module=../plugins/nginx-dav-ext-module \
   --add-module=../plugins/lua-nginx-module \
   --add-module=../plugins/nginx-upload-module \
   --add-module=../plugins/ngx_devel_kit \
@@ -321,18 +317,18 @@ chmod u+x ./configure
 
 # # TODO collect libs
 # mkdir -p ${curdir}/${NGINX_ALIAS_NAME}/lib64
-# cd ${curdir}/${NGINX_ALIAS_NAME}/lib64
-# cp /usr/local/modsecurity/lib/libmodsecurity.so.3.* . || echo "N"
-# cp /usr/lib64/libfuzzy.so.2.* . || echo "N"
-# cp /usr/lib64/libyajl.so.2.* . || echo "N"
-# cp /usr/lib64/libGeoIP.so.1.*  . || echo "N"
-# cp /usr/local/lib/libfuzzy.so.2.* . || echo "N"
-# cp /usr/lib64/liblmdb.so.0.* . || echo "N"
-# cp /usr/lib64/libxslt.so.1.* . || echo "N"
-# cp /usr/lib64/libexslt.so.0.* . || echo "N"
-# cp /usr/lib64/liblmdb.so.0.* . || echo "N"
-# cp /usr/lib64/libgcrypt.so.11.* . || echo "N"
-# cp ${curdir}/compile/luajit/lib/libluajit-5.1.so.2.1.0  .  || echo "N"
+cd ${curdir}/${NGINX_ALIAS_NAME}/lib64
+cp /usr/local/modsecurity/lib/libmodsecurity.so.3.* . || echo "N"
+cp /usr/lib64/libfuzzy.so.2.* . || echo "N"
+cp /usr/lib64/libyajl.so.2.* . || echo "N"
+cp /usr/lib64/libGeoIP.so.1.*  . || echo "N"
+cp /usr/local/lib/libfuzzy.so.2.* . || echo "N"
+cp /usr/lib64/liblmdb.so.0.* . || echo "N"
+cp /usr/lib64/libxslt.so.1.* . || echo "N"
+cp /usr/lib64/libexslt.so.0.* . || echo "N"
+cp /usr/lib64/liblmdb.so.0.* . || echo "N"
+cp /usr/lib64/libgcrypt.so.11.* . || echo "N"
+cp ${curdir}/compile/luajit/lib/libluajit-5.1.so.2.1.0  .  || echo "N"
 
 # # TODO 更新本地目录
 # function override_ngx_conf(){

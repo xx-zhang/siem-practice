@@ -138,7 +138,8 @@ yum install gcc make gcc-c++ \
 cd ${curdir}/builds
 tar xf ${curdir}/deps/${:wq
 
-：:}-${openssl_version}.tar.gz && \
+cd ${curdir}/builds
+tar xf ${curdir}/deps/${openssl_prefix}-${openssl_version}.tar.gz && \
 mv ${openssl_prefix}-* ${curdir}/compile/openssl
 #cd ${curdir}/compile/openssl && ./config && make -j2
 say_ok "Installed ${openssl_prefix}"

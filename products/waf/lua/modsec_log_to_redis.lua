@@ -2,6 +2,8 @@ package.cpath = "conf/lua/5.1/?.so;"
 local redis_connector = require("resty.redis.connector")
 local json = require("cjson")
 
+local modsec_log = ngx.req.get_headers()["X-ModSec-Log"]
+
 local rc = redis_connector.new()
 local red, err = rc:connect({
     url = "redis://172.17.0.1:32771",
@@ -17,14 +19,14 @@ local log_data = {
     time_local = ngx.var.time_local,
     request = ngx.var.request,
     status = ngx.var.status,
-    body_bytes_sent = ngx.var.body_bytes_sent,
-    http_referer = ngx.var.http_referer,
-    http_user_agent = ngx.var.http_user_agent
+    modsec_message = ngx.var.modsec_message, -- ModSecurity 日志变量
+    modsec_audit_log = ngx.var.modsec_audit_log , -- ModSecurity 日志变量
+    modsec_audit_log = ngx.var.modsec_log , -- ModSecurity 日志变量
 }
 
 local log_json = json.encode(log_data)
 
-local res, err = red:publish("topnsm_nginx_logs", log_json)
+local res, err = red:publish("topnsm_modsec_logs", log_json)
 if not res then
     ngx.say("failed to publish: ", err)
     return

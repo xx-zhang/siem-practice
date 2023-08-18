@@ -61,12 +61,9 @@ patchelf --add-needed ./lib64/libfuzzy.so.2.1.0 ./sbin/nginx
 
 
 ## 配置
-
-```
-
-```
-
-
+- Update 20230817 
+    - `ngx.var.modsec*` 相关参数不一定能直接传进去，如果没有就要想办法
+    - 当前 modsecurity 的日志可以尝试通过 `secAction` 获取更多的变量，接着给到lua.
 
 
 # 常见faq

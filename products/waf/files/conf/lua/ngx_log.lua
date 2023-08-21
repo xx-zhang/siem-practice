@@ -1,13 +1,19 @@
 package.cpath = "conf/lua/5.1/?.so;" 
-local redis_connector = require("resty.redis.connector")
+
+local redis = require("resty.redis")
 local json = require("cjson")
 
-local rc = redis_connector.new()
-local red, err = rc:connect({
-    url = "redis://172.17.0.1:32771",
-})
+local red = redis:new()
+red:set_timeout(3000) -- 1 sec
 
-if not red then
+
+ngx.say("prepare to conmnect  ")
+
+local ok, err = red.connect(("172.17.0.1", 32771))
+
+ngx.say("conmnect  complete...")
+
+if not ok then
     ngx.say("failed to connect: ", err)
     return
 end
@@ -37,3 +43,5 @@ if not ok then
     ngx.say("failed to set keepalive: ", err)
     return
 end
+
+

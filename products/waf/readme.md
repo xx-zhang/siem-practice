@@ -10,7 +10,7 @@
 - 选型 https://github.com/ADD-SP/ngx_waf/
     - https://docs.addesp.com/ngx_waf/zh-cn/guide/installation.html#宝塔面板
 - [nginx captcha](https://github.com/dengqiang2015/ngx_http_captcha_module/blob/master/ngx_http_captcha_module.c)
-
+- [ngx_waf-20230811.tar.gz release](https://github.com/xx-zhang/ngx-sm2/releases/download/untagged-b9992d47734cd5a5f97f/nginx-11.tar.gz)
 
 ```conf
 

@@ -1,0 +1,15 @@
+
+# TopSA.1012 不允许用户名是admin结尾的用户名登录
+SecRule REQUEST_URI "@beginsWith /auth/login.do" \
+        "phase:1,\
+        t:none,\
+        deny,\
+        log,\
+        id:40001004,\
+        severity:'CRITICAL',\
+        msg:'USER OpsAdmin not allow Login.',\
+        logdata:'Matched Data: %{TX.0} found within %{MATCHED_VAR_NAME}: %{MATCHED_VAR}',chain"
+        SecRule REQUEST_METHOD "@streq GET" "t:none,chain"
+        SecRule ARGS:loginName "@rx .*admin$" "t:lowercase"
+
+# 黑名单 url

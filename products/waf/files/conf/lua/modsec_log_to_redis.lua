@@ -20,8 +20,9 @@ local log_data = {
     request = ngx.var.request,
     status = ngx.var.status,
     modsec_message = ngx.var.modsec_message, -- ModSecurity 日志变量
-    modsec_audit_log = ngx.var.modsec_audit_log , -- ModSecurity 日志变量
-    modsec_audit_log = ngx.var.modsec_log , -- ModSecurity 日志变量
+    modsec_log = ngx.var.modsec_log, -- ModSecurity 日志变量
+    modsec_audit_log = ngx.var.modsec_audit_log -- ModSecurity 日志变量
+
 }
 
 local log_json = json.encode(log_data)
@@ -39,3 +40,4 @@ if not ok then
     ngx.say("failed to set keepalive: ", err)
     return
 end
+

@@ -1,0 +1,11 @@
+
+SecRule REQUEST_FILENAME "@pmf data/request_body_bypass_url_list.data"
+    "id:44005001,\
+    t:none,\
+    phase:request,\
+    nolog,\
+    noauditlog,\
+    pass,\
+    ctl:RequestBodyAccess=Off,chain"
+        SecRule REQUEST_METHOD "@streq PUT" "t:none"
+	

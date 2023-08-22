@@ -12,40 +12,13 @@
 - [nginx captcha](https://github.com/dengqiang2015/ngx_http_captcha_module/blob/master/ngx_http_captcha_module.c)
 - [ngx_waf-20230811.tar.gz release](https://github.com/xx-zhang/ngx-sm2/releases/download/untagged-b9992d47734cd5a5f97f/nginx-11.tar.gz)
 
-```conf
 
-location / {
-    ...
-    modsecurity on;
-    modsecurity_rules_file /path/to/modsecurity.conf;
-    ...
-    log_by_lua_block {
-        local redis = require "resty.redis"
-        local red = redis:new()
-        red:set_timeout(1000) -- 1 sec
-        local ok, err = red:connect("127.0.0.1", 6379)
-        if not ok then
-            ngx.log(ngx.ERR, "failed to connect: ", err)
-            return
-        end
-
-        local modsec_log = ngx.var.modsec_audit_log
-        if modsec_log then
-            local res, err = red:rpush("modsec_logs", modsec_log)
-            if not res then
-                ngx.log(ngx.ERR, "failed to send log: ", err)
-            end
-        end
-
-        -- put it into the connection pool of size 100,
-        -- with 0 idle timeout
-        local ok, err = red:set_keepalive(0, 100)
-        if not ok then
-            ngx.log(ngx.ERR, "failed to set keepalive: ", err)
-            return
-        end
-    }
-}
+```bash
+docker run -itd \
+    --name waf \
+    --net=host \
+    -v $(pwd)/files/conf:/topnsm/nginx/conf/ \
+    actanble/ngx_waf:v1
 
 ```
 

@@ -20,7 +20,7 @@ java -jar RaspInstall.jar -nodetect -install ../webapp \
     -appsecret 1hJ7UHrEFNCKQEytxLXVf6RjOnNT9cIw7Cx172J7Yzw \
     -appid ce0988d9b11b756b1b7cae7f450a0857b8a4959c
 
-java --add-opens java.base/jdk.internal.loader=ALL-UNNAMED -javaagent:/home/webgoat/webapp/rasp/rasp.jar -jar /home/webgoat/webapp/springboot-server-8.1.0.jar 
+java --add-opens java.base/jdk.internal.loader=ALL-UNNAMED -javaagent:/home/webgoat/webapp/rasp/rasp.jar -jar /home/webgoat/webapp/springboot-server-8.1.0.jar  --server.port=80  --server.address=localhost
 ```
 
 ## 测试 IAST

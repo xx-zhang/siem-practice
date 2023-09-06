@@ -182,34 +182,12 @@ tar xf ${curdir}/deps/modsecurity-nginx-v${modsecurity_nginx_version}.tar.gz && 
 say_ok "Install modsecurity-nginx ok"
 ###########################################
 
-libsodium_install (){
-  git clone https://github.com/jedisct1/libsodium.git --branch stable libsodium-src && \
-  cd libsodium-src \
-        &&  ./configure --prefix=/data/workdir/nginx-demo/nginx-1.24.0/libsodium --with-pic \
-        &&  make -j$(nproc) && make check -j $(nproc) && make install
-}
-
 # shellcheck disable=SC1073
 if [ -z $1 ]; then
    curdir=$(cd $(dirname $0); pwd)
 else
    curdir=$1
 fi
-# uthash
-# export LIB_UTHASH=/www/server/nginx/src/uthash
-########## install ngx_waf
-# install ngx-waf to plugins 
-ngx_waf_install() {
-    git clone -b current https://github.com/xx-zhang/ngx_waf ${curdir}/plugins/ngx_waf
-    cd ${curdir}/plugins/ngx_waf && \
-    git clone -b v1.7.15 https://github.com/DaveGamble/cJSON.git lib/cjson
-    git clone -b v2.3.0 https://github.com/troydhanson/uthash.git lib/uthash
-
-}
-
-ngx_waf_install
-##########
-
 
 cd ${curdir}/deps
 
@@ -299,20 +277,19 @@ chmod u+x ./configure
 	--with-mail_ssl_module \
 	--with-file-aio \
 	--with-http_v2_module \
-  --with-http_dav_module \
-  --add-module=../plugins/lua-nginx-module \
-  --add-module=../plugins/nginx-upload-module \
-  --add-module=../plugins/ngx_devel_kit \
-  --with-debug \
-  --with-cc-opt='-O3 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic' \
-  --with-ld-opt=-Wl,-rpath,../compile/luajit/lib \
-  --with-pcre-jit \
-  --with-compat --add-dynamic-module=../plugins/modsecurity-nginx/\
-  --add-module=../plugins/ngx_waf
+    --with-http_dav_module \
+    --add-module=../plugins/lua-nginx-module \
+    --add-module=../plugins/nginx-upload-module \
+    --add-module=../plugins/ngx_devel_kit \
+    --with-debug \
+    --with-cc-opt='-O3 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic' \
+    --with-ld-opt=-Wl,-rpath,../compile/luajit/lib \
+    --with-pcre-jit \
+    --with-compat --add-dynamic-module=../plugins/modsecurity-nginx/
 
 # TODO 2023-08-11 
 
- make -j2
+ make
  make install
  say_ok "Build Nginx OK."
 

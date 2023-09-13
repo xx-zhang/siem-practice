@@ -1,10 +1,16 @@
 # 容器安全探究
-
-- https://zhuanlan.zhihu.com/p/108425561
+- https://www.devopsart.com/2023/01/step-by-step-installation-of-k3s-in.html
+- TLB https://zhuanlan.zhihu.com/p/108425561
 
 ## 云原生安全接入和探索
 
+```
+curl -LO https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl
 
+chmod +x kubectl
+
+cp kubectl /usr/bin
+```
 
 ## 安装教程
 

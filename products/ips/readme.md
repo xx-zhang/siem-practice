@@ -13,11 +13,13 @@
         - aliyundrive/actanble ppts 
         - https://linuxcpp.0voice.com/?id=87
 
+## suricata rule manger 
+- https://gitee.com/redauzhang/suri_rules
+
 ## suricata base
 > suricata基础版， 没有 dpdk
 - 直接编译一个 centos7 的基础版本。
 
 ## suricata + DPDK
 - dpdk 针对性的网卡进行自动打包成 `bin` 的相关产品化工作
-
 

@@ -1,0 +1,2 @@
+- https://blog.csdn.net/leacock1991/article/details/114002541
+- https://github.com/dhruvvyas90/qemu-rpi-kernel

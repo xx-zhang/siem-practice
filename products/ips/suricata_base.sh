@@ -112,7 +112,7 @@ say_ok "Cargo source Inital OK!"
 }
 
 install_luajit() {
-  cd ${SURICATA_DEPS_DIR}
+  cd ${SURICATA_BUILD_WORKING_DIR}
   tar -xzf ${SURICATA_DEPS_DIR}/LuaJIT-2.0.5.tar.gz && cd LuaJIT-2.0.5 && make && make install
 
 
@@ -125,7 +125,7 @@ cd ${SURICATA_BUILD_WORKING_DIR}
 ## 安装 hyperscan ; https://www.cnblogs.com/yanhai307/p/10770821.html
 tar -zxf ${SURICATA_DEPS_DIR}/ragel-6.10.tar.gz
 cd ragel-6.10
-./configure && make && make install
+./configure && make -j$(nproc) && make install
 
 cd ${SURICATA_BUILD_WORKING_DIR}
 tar -zxf ${SURICATA_DEPS_DIR}/boost_1_69_0.tar.gz
@@ -139,7 +139,7 @@ tar -zxf ${SURICATA_DEPS_DIR}/hyperscan-5.4.2.tar.gz
 cd hyperscan-5.4.2
 mkdir cmake-build && cd cmake-build
 cmake -DBUILD_SHARED_LIBS=on -DCMAKE_BUILD_TYPE=Release .. && \
-make -j8 && make install
+make -j$(nproc) && make install
 ldconfig
 
 say_ok "Install hyperscan !"
@@ -156,7 +156,7 @@ cd libhtp-0.5.45/
 CPPFLAGS=-I/usr/include/ CFLAGS=-g ./configure \
     --enable-rust=yes \
     --enable-gccmarch-native=no
-ldconfig 
+# ldconfig 
 
 say_ok "Install LibHtp OK!"
 
@@ -173,9 +173,7 @@ CPPFLAGS=-I/usr/include/ CFLAGS=-g LIBS="-lrt" ./configure  \
     --enable-rust=yes \
     --enable-gccmarch-native=no \
     --enable-libmagic=yes \
-    --prefix=/topnsm/idps/usr \
-    --sysconfdir=/topnsm/idps/etc \
-    --localstatedir=/topnsm/idps/var \
+    --prefix=/topnsm/idps/ \
     --enable-geoip  \
     --enable-luajit \
     --with-libluajit-includes=/usr/local/include/luajit-2.0/ \
@@ -185,10 +183,13 @@ CPPFLAGS=-I/usr/include/ CFLAGS=-g LIBS="-lrt" ./configure  \
     --enable-profiling \
     --enable-nfqueue
 
-make clean && make -j4 && make install && ldconfig
+make clean && make -j$(nproc) && make install && ldconfig
 make install-conf
 
 say_ok "Install Suricata OK!"
+
+# patchelf --set-rpath /topnsm/idps/lib64/ ./bin/suricata
+# patchelf --add-needed ./lib64/libfuzzy.so.2.1.0 ./sbin/nginx
 }
 
 

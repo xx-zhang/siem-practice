@@ -23,3 +23,30 @@
 ## suricata + DPDK
 - dpdk 针对性的网卡进行自动打包成 `bin` 的相关产品化工作
 
+```
+[root@VM-4-14-centos ~]# ps -ef | grep qcloud
+root      1376     1  0 Sep12 ?        00:00:25 /usr/local/qcloud/tat_agent/tat_agent
+root      1845     1  0 Sep12 ?        00:00:33 /usr/local/qcloud/YunJing/YDLive/YDLive
+root      2208  1845  0 Sep12 ?        00:25:33 /usr/local/qcloud/YunJing/YDEyes/YDService
+root     11124  9754  0 15:00 pts/4    00:00:00 grep --color=auto qcloud
+root     32376     1  0 14:21 ?        00:00:00 /usr/local/qcloud/stargate/bin/sgagent -d
+
+# 删除tat_agent的python探测
+ps -ef | grep qcloud | grep -v grep | awk '{print $2}' | xargs kill -9 
+```
+
+## lib 
+```
+
+libmaxminddb.so.0 => not found
+libluajit-5.1.so.2 => not found
+libpcap.so.1 => not found
+libnet.so.1 => not found
+libnetfilter_queue.so.1 => not found
+libnfnetlink.so.0 => not found
+libjansson.so.4 => not found
+libyaml-0.so.2 => not found
+libhs.so.5 => not found
+libpcre2-8.so.0 => not found
+
+```

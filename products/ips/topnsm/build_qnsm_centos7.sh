@@ -54,7 +54,7 @@ qnsm_deps_centos7 {
     yum -y install patch git gcc gcc-c++ wget 
     yum install -y libpcap-devel pcre-devel file-devel libyaml-devel \
         jansson-devel libcap-ng-devel librdkafka-devel nss-devel nspr-devel make gcc \
-        libxml2-devel python-pip
+        libxml2-devel python-pip 
 
     # pip install  --upgrade pip  configparser
     pip install  configparser==3.5.0 
@@ -114,9 +114,7 @@ install_suricata {
   --enable-gccmarch-native=no \
   --enable-dpdk=yes \
   --enable-libmagic=yes \
-  --prefix=/topnsm/idps/usr \
-  --sysconfdir=/topnsm/idps/etc \
-  --localstatedir=/topnsm/idps/var \
+  --prefix=/topnsm/idps/ \
   --enable-geoip  \
   --enable-luajit \
   --with-libluajit-includes=/usr/local/include/luajit-2.0/ \

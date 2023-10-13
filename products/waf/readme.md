@@ -43,3 +43,7 @@ patchelf --add-needed ./lib64/libfuzzy.so.2.1.0 ./sbin/nginx
 - update ngx lua module to []`v0.10.25`](https://github.com/openresty/lua-nginx-module/releases/tag/v0.10.25)
 
 ![Alt text](./images/image.png)
+
+## 问题2. 日志已经可以发送到c++ rest
+- 日志可以用http接收，但是日志存储放在哪儿呢。如果是个web接口。具体应该怎么实现。
+    - http+kcp 

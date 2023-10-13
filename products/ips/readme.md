@@ -50,3 +50,8 @@ libhs.so.5 => not found
 libpcre2-8.so.0 => not found
 
 ```
+
+
+## sruciata windows qt 
+- 将东西安装到windows机器上，可以把日志发送到http, 接着处理http的日志到 rocksdb/leveldb 接着发送到平台
+

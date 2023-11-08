@@ -7,8 +7,7 @@
   "workbench.iconTheme": "file-icons-mac",
   "workbench.fontAliasing": "antialiased",
   "workbench.sash.size": 12,
-  "window.zoomLevel": 0.3, // 放大1.2倍
-  "workbench.activityBar.visible": true,
+  "window.zoomLevel": 0.3,
   "editor.fontFamily": "Consolas, 'Courier New', monospace",
   // "editor.fontFamily":"Droid Sans Mono, Droid Sans Fallback", 
   "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss06', 'zero'",

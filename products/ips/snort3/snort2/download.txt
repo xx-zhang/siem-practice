@@ -15,7 +15,7 @@ wget -c -N https://github.com/Kitware/CMake/releases/download/v3.25.3/cmake-3.25
 wget -c -N https://ftp.gnu.org/gnu/glibc/glibc-2.16.0.tar.gz --no-check-certificate
 
 
-yum -y install flex pcre2-devel bison \
+yum -y install flex pcre-devel bison \
     libpcap-devel openssl-devel \
     zlib-devel hwloc hwloc-devel \
     libdnet-devel \

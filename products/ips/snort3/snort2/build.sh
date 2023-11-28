@@ -56,3 +56,11 @@ function install_cmake3(){
     bash cmake-3.25.3-linux-x86_64.sh --prefix=/usr/local/cmake-3.25.3-linux-x86_64 --skip-license
     ln -sf /usr/local/cmake-3.25.3-linux-x86_64/bin/cmake /usr/bin/cmake
 }
+
+
+function install_bson(){
+
+    wget -c -N https://
+
+
+}
